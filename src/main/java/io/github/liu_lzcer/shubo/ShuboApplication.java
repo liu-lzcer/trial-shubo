@@ -1,4 +1,4 @@
-package com.example.shubo;
+package io.github.liu_lzcer.shubo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
