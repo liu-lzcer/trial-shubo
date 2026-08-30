@@ -8,7 +8,7 @@
         <version>4.1.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>io.github.liu_lzcer.shubo</groupId>
+    <groupId>io.github.liu_lzcer</groupId>
     <artifactId>shubo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>shubo</name>
