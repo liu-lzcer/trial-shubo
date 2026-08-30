@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: shubo
+  config:
+    import: optional:file:./local.properties
+  datasource:
+    url:  jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:shubo}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD}

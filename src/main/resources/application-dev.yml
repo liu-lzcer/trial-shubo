@@ -1,0 +1,3 @@
+logging:
+  level:
+    io.github.liu_lzcer.shubo: debug

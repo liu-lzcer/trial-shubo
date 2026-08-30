@@ -36,3 +36,6 @@ build/
 
 ### redis 快照 ###
 dump.rdb
+
+### 密钥 ###
+local.properties
