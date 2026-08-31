@@ -39,3 +39,7 @@ dump.rdb
 
 ### 密钥 ###
 local.properties
+.env
+
+### 日志 ###
+logs/
