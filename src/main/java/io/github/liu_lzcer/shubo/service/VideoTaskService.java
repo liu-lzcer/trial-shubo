@@ -5,9 +5,9 @@ import io.github.liu_lzcer.shubo.dto.PageData;
 import io.github.liu_lzcer.shubo.dto.VideoTaskDTO;
 import io.github.liu_lzcer.shubo.dto.VideoTaskQueryDTO;
 import io.github.liu_lzcer.shubo.entity.VideoTask;
+import io.github.liu_lzcer.shubo.enums.VideoTaskStatus;
 import io.github.liu_lzcer.shubo.exception.TaskNotFoundException;
 import io.github.liu_lzcer.shubo.mapper.VideoTaskMapper;
-import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class VideoTaskService {
     public CreateVideoTaskDTO createVideoTask(String title) {
         VideoTask task = new VideoTask();
         task.setTitle(title);
-        task.setStatus("NEW");
+        task.setStatus(VideoTaskStatus.NEW);
 
         int row = videoTaskMapper.createTask(task);
         if(row == 0) {
@@ -40,14 +40,18 @@ public class VideoTaskService {
         return VideoTaskDTO.from(task);
     }
 
-    public long getTaskCount(String status) {
+    public long getTaskCount(VideoTaskStatus status) {
         return videoTaskMapper.countTasks(status);
     }
 
-    public PageData<List<VideoTaskDTO>> getTaskQuery(@NonNull VideoTaskQueryDTO videoTaskQueryDTO) {
-        List<VideoTask> list = videoTaskMapper.getTaskList(videoTaskQueryDTO.status()
+    public PageData<List<VideoTaskDTO>> getTaskQuery(VideoTaskQueryDTO videoTaskQueryDTO) {
+        String raw = videoTaskQueryDTO.status();
+        VideoTaskStatus status = raw == null ? null : VideoTaskStatus.valueOf(raw);
+
+        List<VideoTask> list = videoTaskMapper.getTaskList(status
             , videoTaskQueryDTO.offset(), videoTaskQueryDTO.size());
+
         return new PageData<>(list.stream().map(VideoTaskDTO::from).toList()
-            , videoTaskQueryDTO.page(), videoTaskQueryDTO.size(), getTaskCount(videoTaskQueryDTO.status()));
+            , videoTaskQueryDTO.page(), videoTaskQueryDTO.size(), getTaskCount(status));
     }
 }

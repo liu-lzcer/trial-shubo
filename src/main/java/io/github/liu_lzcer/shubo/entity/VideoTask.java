@@ -1,17 +1,19 @@
 package io.github.liu_lzcer.shubo.entity;
 
 
+import io.github.liu_lzcer.shubo.enums.VideoTaskStatus;
+
 import java.time.LocalDateTime;
 
 public class VideoTask {
     private Long id;
     private String title;
-    private String status;
+    private VideoTaskStatus status;
     private String errorMessage;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public VideoTask(Long id, String title, String status
+    public VideoTask(Long id, String title, VideoTaskStatus status
         , String errorMessage, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.title = title;
@@ -24,7 +26,7 @@ public class VideoTask {
     public VideoTask() {
     }
 
-    public VideoTask(Long id, String title, String status) {
+    public VideoTask(Long id, String title, VideoTaskStatus status) {
         this.id = id;
         this.title = title;
         this.status = status;
@@ -38,7 +40,7 @@ public class VideoTask {
         return title;
     }
 
-    public String getStatus() {
+    public VideoTaskStatus getStatus() {
         return status;
     }
 
@@ -62,7 +64,7 @@ public class VideoTask {
         this.title = title;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(VideoTaskStatus status) {
         this.status = status;
     }
 

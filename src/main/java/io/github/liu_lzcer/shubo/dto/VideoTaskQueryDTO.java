@@ -1,10 +1,12 @@
 package io.github.liu_lzcer.shubo.dto;
 
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
 
 public record VideoTaskQueryDTO(@Min(value = 1, message = "page最小为1") Integer page
     , @Min(value = 1, message = "size最小为1") Integer size
-    , String status) {
+    , @Pattern(regexp = "NEW|RUNNING|DONE|FAILED"
+    , message = "status 只能是 NEW、RUNNING、DONE、FAILED") String status) {
     private static final int DEFAULT_PAGE = 1;
     private static final int DEFAULT_SIZE = 10;
     private static final int MAX_SIZE = 100;
