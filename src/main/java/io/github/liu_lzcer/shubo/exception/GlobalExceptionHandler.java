@@ -1,7 +1,6 @@
 package io.github.liu_lzcer.shubo.exception;
 
 import io.github.liu_lzcer.shubo.dto.ApiResponse;
-import io.github.liu_lzcer.shubo.dto.ErrorCode;
 import io.github.liu_lzcer.shubo.dto.FieldErrorItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

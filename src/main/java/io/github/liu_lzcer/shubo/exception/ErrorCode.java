@@ -1,4 +1,4 @@
-package io.github.liu_lzcer.shubo.dto;
+package io.github.liu_lzcer.shubo.exception;
 
 public enum ErrorCode {
     INVALID_PARAM(40001, "参数校验失败"),
