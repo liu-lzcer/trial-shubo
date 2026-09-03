@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.liu_lzcer.shubo.mapper.VideoTaskMapper">
+    <select id = "getTaskById" resultType="io.github.liu_lzcer.shubo.entity.VideoTask">
+        SELECT id, title, status, created_at, updated_at, error_message
+        FROM video_task
+        WHERE id = #{id}
+    </select>
+
+    <select id="getTaskList" resultType="io.github.liu_lzcer.shubo.entity.VideoTask">
+        SELECT id, title, status, created_at, updated_at, error_message
+        FROM video_task
+        <where>
+            <if test="status != null">status = #{status}</if>
+        </where>
+        ORDER BY updated_at DESC, created_at DESC, id DESC
+        LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="countTasks" resultType="long">
+        SELECT COUNT(*) FROM video_task
+        <where>
+            <if test="status != null">status = #{status}</if>
+        </where>
+    </select>
+
+    <insert id="createTask" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO video_task (title, status) VALUE (#{title}, #{status})
+    </insert>
+</mapper>
