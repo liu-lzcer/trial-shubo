@@ -28,4 +28,12 @@
     <insert id="createTask" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO video_task (title, status) VALUE (#{title}, #{status})
     </insert>
+
+    <update id="updateVideoTaskStatus">
+        UPDATE video_task
+        SET status = #{toStatus},
+            error_message = #{errorMessage}
+        WHERE id = #{id}
+            AND status = #{fromStatus}
+    </update>
 </mapper>

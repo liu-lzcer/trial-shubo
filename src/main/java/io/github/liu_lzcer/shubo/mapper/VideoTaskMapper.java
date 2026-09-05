@@ -11,4 +11,6 @@ public interface VideoTaskMapper {
     List<VideoTask> getTaskList(@Param("status") VideoTaskStatus status, @Param("offset") int offset, @Param("size") int size);
     long countTasks(@Param("status") VideoTaskStatus status);
     int createTask(VideoTask task);
+    int updateVideoTaskStatus(@Param("id") Long id, @Param("fromStatus") VideoTaskStatus fromStatus
+        , @Param("toStatus") VideoTaskStatus toStatus, @Param("errorMessage") String errorMessage);
 }
