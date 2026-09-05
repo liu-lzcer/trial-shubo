@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(TaskNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleNotFound(TaskNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new ApiResponse<>(ErrorCode.TASK_NOT_FOUND.code(), e.getMessage(), null, null));
+                .body(new ApiResponse<>(ErrorCode.VIDEO_TASK_NOT_FOUND.code(), e.getMessage(), null, null));
     }
 
     @ExceptionHandler(Exception.class)
@@ -27,6 +27,11 @@ public class GlobalExceptionHandler {
         log.error("未处理异常", e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(new ApiResponse<>(ErrorCode.INTERNAL_ERROR.code(), ErrorCode.INTERNAL_ERROR.message(), null,null));
+    }
+
+    @ExceptionHandler(VideoTaskStatusConflictException.class)
+    public ResponseEntity<ApiResponse<Void>> handleStatusConflict(VideoTaskStatusConflictException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ApiResponse<>(ErrorCode.VIDEO_TASK_STATUS_CONFLICT.code(),e.getMessage(),null,null));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
